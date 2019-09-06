@@ -33,14 +33,14 @@ class ImageElement(parent: Element, private val imagePath: String = "", private 
     imgHeight = imgHeight ?: pdImage.height
     imgWidth = imgWidth ?: pdImage.width
 
-    val pdPage = getPage(document, pdDocument, startY + imgHeight!!)
+    val pdPage = getPage(document, pdDocument, startY+imgHeight!!)
 
     val realStartX = when (inheritedHorizontalAlignment) {
       Alignment.LEFT -> startX
       Alignment.RIGHT -> endX - imgWidth!!
       Alignment.CENTER -> startX + (endX - startX - imgWidth!!) / 2f
     }
-    val transformedY = transformY(document, startY) - imgHeight!!
+    val transformedY = transformY(document, startY)-imgHeight!!
     PDPageContentStream(pdDocument, pdPage, APPEND, true).use { stream ->
       stream.drawImage(
         pdImage,
