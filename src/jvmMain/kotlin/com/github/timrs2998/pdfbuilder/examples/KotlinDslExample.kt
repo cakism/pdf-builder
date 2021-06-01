@@ -8,8 +8,6 @@ import com.github.timrs2998.pdfbuilder.style.Alignment
 import com.github.timrs2998.pdfbuilder.style.Border
 import com.github.timrs2998.pdfbuilder.style.Margin
 import com.github.timrs2998.pdfbuilder.style.Padding
-import com.github.timrs2998.pdfbuilder.table
-import com.github.timrs2998.pdfbuilder.text
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 import java.awt.Color
 

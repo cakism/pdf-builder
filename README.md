@@ -4,21 +4,28 @@
 
 # pdf-builder
 
-PDF builder written in [Kotlin](https://kotlinlang.org/) with a [statically typed](https://en.wikipedia.org/wiki/Type_system#Static_type_checking) [DSL](https://en.wikipedia.org/wiki/Domain-specific_language). Inspired by Craig's [document-builder](https://github.com/craigburke/document-builder) library.
+PDF builder written in [Kotlin](https://kotlinlang.org/) with a [statically typed](https://en.wikipedia.org/wiki/Type_system#Static_type_checking)
+[DSL](https://en.wikipedia.org/wiki/Domain-specific_language). Inspired by Craig's
+[document-builder](https://github.com/craigburke/document-builder) library. Under the hood, it relies on
+[Apache PDFBox](https://pdfbox.apache.org/) to create the pdf files.
 
 ## Usage
 
-Include the following in your [build.gradle](https://docs.gradle.org/current/userguide/userguide_single.html):
+Both pdf-build and Apache PDFBox are required dependencies. Include the following in your
+[build.gradle.kts](https://docs.gradle.org/current/userguide/userguide_single.html):
 
-```groovy
+```kotlin
 repositories {
-  jcenter()
+  maven("https://dl.bintray.com/timrs2998/maven")
 }
 
 dependencies {
-  implementation 'com.github.timrs2998:pdf-builder:<latest version>'
+  implementation("com.github.timrs2998:pdf-builder:<latest version>")
+  implementation("org.apache.pdfbox:pdfbox:<latest apache pdfbox version>")
 }
 ```
+
+**NB**: Be sure to be using Gradle 5.3+ with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 5.2 or lower import `com.github.timrs2998:pdf-builder-jvm:<latest version>` instead.
 
 and you can use the library in Kotlin with its DSL:
 
@@ -67,8 +74,4 @@ cd pdf-builder/
 ./gradlew build
 ```
 
-To release a new version, use GitHub to create release tags in "v1.0.0" format.
-Travis will build and publish to Bintray provided that the BINTRAY_USER and 
-BINTRAY_KEY environment variables are set.
-
-Travis also needs a personal access token for GitHub provided through the GITHUB_TOKEN environment variable to update GitHub pages.
+To release a new version, use GitHub to create release tags in "v1.0.0" format. Travis will build and publish to Bintray provided that the BINTRAY_USER and BINTRAY_KEY environment variables are set. Also change the `repoOwner` and `bintrayRepoName` variables accordingly to your Github username and Bintray maven repository name.
